@@ -1,0 +1,43 @@
+<aside>
+  <!-- Sidebar -->
+  <div class="sidebar" [ngClass]="{'active': active}">
+
+    <div class="dismiss" (click)="active = false">
+    </div>
+
+    <h2>Content Generator</h2>
+    <h3>Search:</h3>
+    <input type="search" #searchField [(ngModel)]="searchText" placeholder="Filter your feeds..."
+      aria-label="Search feeds" />
+
+    <span *ngIf="(activeFeeds | searchFeedName:searchText).length === 0 && activeFeeds.length">No results for your
+      search</span>
+
+    <div class="add-container">
+      <h3 for="feedName">Add a new feed:</h3>
+      <p #feedName name="feedName" aria-label="Type your feed name"> </p>
+      <input #feedUrl aria-label="Copy your RSS url" placeholder="Copy your RSS url..." />
+    </div><br>
+    <button (click)="add(feedName.value, feedUrl.value);" class="add-feed">Add</button>
+  </div>
+
+  <h3>Feeds list:</h3>
+  <ul class="active-feeds">
+    <li *ngFor="let feed of activeFeeds | searchFeedName: searchText">
+      <span class="title">{{feed.feed?.title}}</span>
+      <button class="delete" title="delete feed" (click)="delete(feed)">x</button>
+    </li>
+  </ul>
+
+  <div class="content">
+    <nav>
+      <div class="hamburger-box" (click)="active = !active">
+        <div class="hamburger-inner"></div>
+      </div>
+    </nav>
+  </div>
+  <!-- Dark Overlay element -->
+  <div class="overlay" [ngClass]="{active: active}" (click)="active = false"></div>
+</aside>
+
+<div class="toast" *ngIf="warningMessage" [ngClass]="{show: showWarning}">{{warningMessage}}</div>
