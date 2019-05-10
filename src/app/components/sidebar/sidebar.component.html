@@ -19,7 +19,7 @@
     <div class="add-container">
       <h3 for="feedName">Add a new feed:</h3>
       <p #feedName name="feedName" aria-label="Type your feed name"> </p>
-      <input #feedUrl aria-label="Copy your RSS url" placeholder="Copy your RSS url..." />
+      <input [ngStyle]="{'width':'100%'}" #feedUrl aria-label="Copy your RSS url" placeholder="Copy your RSS url..." />
     </div><br>
     <button (click)="add(feedName.value, feedUrl.value);" class="add-feed">Add</button>
   </div>
@@ -51,4 +51,4 @@
   <div class="overlay" [ngClass]="{active: active}" (click)="active = false"></div>
 </aside>
 
-<div class="toast" *ngIf="warningMessage" [ngClass]="{show: showWarning}">{{warningMessage}}</div>
+<div class="toast" *ngIf="warningMessage" [ngClass]="{show: showWarning}">Warning: {{warningMessage}}</div>
