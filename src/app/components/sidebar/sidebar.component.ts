@@ -3,6 +3,7 @@ import { FeedsService } from '../../services/feeds.service';
 import { Feed } from '../../models/Feed';
 import { HttpErrorResponse } from '@angular/common/http';
 import { feedsConst } from '../../constants/feeds.const';
+import { Article } from '../../models/Article';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,9 +19,24 @@ export class SidebarComponent implements OnInit {
   warningMessage: string;
   searchText: any;
 
+  articles: Article[] = [];
+  feeds: Feed[] = [];
+
   constructor(private feedsService: FeedsService) {}
 
   ngOnInit() {
+    this.feedsService.getAllFeeds$().subscribe((feeds: Feed[]) => {
+      if (feeds) {
+        this.feeds = feeds;
+      }
+    });
+
+    this.feedsService.getAllArticles$().subscribe((articles: Article[]) => {
+      if (articles) {
+        this.articles = articles;
+      }
+    });
+
     if (localStorage.getItem('feeds')) {
       this.activeFeeds = JSON.parse(localStorage.getItem('feeds'));
       this.activeFeeds.map((feed: Feed) => {

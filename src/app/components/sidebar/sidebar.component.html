@@ -5,13 +5,16 @@
     <div class="dismiss" (click)="active = false">
     </div>
 
-    <h2>Content Generator</h2>
+    <h1>Rss & Atom reader</h1>
+
     <h3>Search:</h3>
     <input type="search" #searchField [(ngModel)]="searchText" placeholder="Filter your feeds..."
       aria-label="Search feeds" />
-
+    <br>
+    <hr>
     <span *ngIf="(activeFeeds | searchFeedName:searchText).length === 0 && activeFeeds.length">No results for your
       search</span>
+
 
     <div class="add-container">
       <h3 for="feedName">Add a new feed:</h3>
@@ -20,14 +23,22 @@
     </div><br>
     <button (click)="add(feedName.value, feedUrl.value);" class="add-feed">Add</button>
   </div>
+  <br>
+  <hr>
 
   <h3>Feeds list:</h3>
   <ul class="active-feeds">
     <li *ngFor="let feed of activeFeeds | searchFeedName: searchText">
-      <span class="title">{{feed.feed?.title}}</span>
-      <button class="delete" title="delete feed" (click)="delete(feed)">x</button>
+      <span class="title">{{feed.feed?.title}} </span>
+      <button class="delete" title="delete feed" (click)="delete(feed)"> Delete</button>
     </li>
   </ul>
+  <br>
+  <hr>
+  <div>
+    <h3>Statistics:</h3>
+    <p>Amount articles:{{articles.length}}</p>
+  </div>
 
   <div class="content">
     <nav>
