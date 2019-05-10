@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FeedsService } from '../services/feeds.service';
-import { Feed } from '../models/Feed';
+import { FeedsService } from '../../services/feeds.service';
+import { Feed } from '../../models/Feed';
 import { HttpErrorResponse } from '@angular/common/http';
-import { feedsConst } from '../constants/feeds.const';
+import { feedsConst } from '../../constants/feeds.const';
 
 @Component({
   selector: 'app-sidebar',

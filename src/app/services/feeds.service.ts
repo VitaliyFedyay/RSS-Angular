@@ -32,7 +32,7 @@ export class FeedsService {
       feedsConst.apiUrl + `${url}` + `&api_key=${apiKey}` + '&order_by=pubDate';
     return this.http.get<any>(URL).pipe(
       map((res: Feed) => {
-        let isAdded =
+        const isAdded =
           this.feeds.length > 0 &&
           this.feeds.find(oldFeed => oldFeed.feed.title === res.feed.title);
         if (!isAdded) {

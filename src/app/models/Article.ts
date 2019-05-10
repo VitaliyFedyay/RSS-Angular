@@ -13,7 +13,7 @@ export class Article {
     };
     categories: Array<any>;
     source: string;
-  
+
     constructor(article: Article, feed) {
       this.title = article.title;
       this.pubDate = article.pubDate;
@@ -30,4 +30,4 @@ export class Article {
       this.source = feed.title;
     }
   }
-  
+
